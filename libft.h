@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:59:26 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/18 13:40:04 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:20:50 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_itoa(int n);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
-//void	ft_putnbr_fd(int n, int fd);
-int		ft_printf(const char *str, ...);
+void	ft_putnbr(int n);
+//int       ft_printf(const char *str, ...);
 
 #endif
