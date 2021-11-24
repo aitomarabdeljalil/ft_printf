@@ -20,4 +20,5 @@ re: fclean all
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
+	make -C libft all
 	ar cr $(NAME) $(OBJ)

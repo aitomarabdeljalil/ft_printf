@@ -6,14 +6,15 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 18:15:19 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/23 14:33:29 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:24:41 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_utils.c"
 #include <stdarg.h>
+#include <stdbool.h>
 
-void	ft_firstcase(char c, va_list args)
+int	ft_firstcase(char c, va_list args)
 {
 	char	r;
 	char	*s;
@@ -21,19 +22,24 @@ void	ft_firstcase(char c, va_list args)
 
 	i = 0;
 	if (c == '%')
+	{
 		write(1, &c, 1);
+		i = 1;
+	}
 	if (c == 'c')
 	{
 		r = (char) va_arg(args, int);
 		write(1, &r, 1);
+		i = 1;
 	}
 	if (c == 'i')
-		ft_putnbr((int) va_arg(args, int));
+		i = ft_putnbr((int) va_arg(args, int));
 	if (c == 's')
 	{
 		s = (char *) va_arg(args, const char *);
-		ft_putstr(s);
+		i = ft_putstr(s);
 	}
+	return (i);
 }
 
 int	ft_printf(const char *str, ...)
@@ -52,13 +58,13 @@ int	ft_printf(const char *str, ...)
 			isspechar = true;
 			str++;
 			if (*str == '%' || *str == 'c' || *str == 'i' || *str == 's')
-				ft_firstcase(*str, args);
+				i += ft_firstcase(*str, args);
 		}
 		if (!isspechar)
+		{
 			ft_putchar(*str);
-		// else
-		// 	i += ft_strlen(res) - 1;
-		i++;
+			i++;
+		}
 		str++;
 	}
 	va_end(args);
@@ -68,6 +74,8 @@ int	ft_printf(const char *str, ...)
 int main()
 {
 	char c = 'h';
-	ft_printf("hello %c %% %i\n%s\n", c, 122, "aoa");
+	int i;
+	i = ft_printf("hello %c %% %i\n%s\n", c, 122, "aoa");
+	printf("%d",i);
 	return (0);
 }
